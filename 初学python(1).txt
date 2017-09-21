@@ -1,0 +1,39 @@
+1.字符串用“或‘都可以，打印，会变空格；
+2.输出用print(),变量不用引号，输入用input(显示内容)，返回值是str类型；
+3.#开头是注释，以冒号:结尾时，缩进的语句视为代码块，大小写敏感；
+4.\表转义，\转义符表示正常输出，r''表示内部字符串不转义；
+5.bool值FALSE和Ture，注意大小写；not表非；None表空；
+6.%输出，例>>>'Hello, %s' % 'world'
+           'Hello, world
+7.数据类型list是一种有序的集合，可以随时添加和删除其中的元素，类似于动态数组；
+  例；直接获取倒数第一个元素；classmate[-1]
+      插；classmates.insert(1, 'Jack')
+	  取；classmates.pop(i)
+	  长度；len(classmate)
+	  list元素也可以是另一个list；s = ['python', 'java', ['asp', 'php'], 'scheme']
+8.有序列表tuple叫元组,和list非常类似，但是tuple一旦初始化就不能修改，代码更安全；
+例：一个“可变的”tuple：
+	>>> t = ('a', 'b', ['A', 'B'])
+	>>> t[2][0] = 'X'
+	>>> t[2][1] = 'Y'
+	>>> t
+	('a', 'b', ['X', 'Y'])
+	改变的其实是tuble里的list.
+9.for x in ...循环就是依次把list或tuple中的每个元素迭代出来代入变量x，然后执行缩进块的语句(操作）
+10.range(101)就可以生成0-100的整数序列，再通过list()函数可以转换为list，例list(range(5))。
+11.键值对：初始化例，d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+                     d['Michael'] = 95
+			操作：d.get('Thomas')，d.pop('Bob')
+12.和list比较，dict有以下几个特点：
+		(1)查找和插入的速度极快，不会随着key的增加而变慢；
+		(2)需要占用大量的内存，内存浪费多。
+   而list相反：
+		(1)查找和插入的时间随着元素的增加而增加；
+		(2)占用空间小，浪费内存很少。
+   所以，dict是用空间来换取时间的一种方法。
+13.set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+	   操作； s.add(4)、s.remove(4)
+	           a = 'abc'
+			>>> b = a.replace('a', 'A')>>> b  'Abc'
+			>>> a   'abc'
+	   
