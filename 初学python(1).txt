@@ -2,16 +2,17 @@
 2.输出用print(),变量不用引号，输入用input(显示内容)，返回值是str类型；
 3.#开头是注释，以冒号:结尾时，缩进的语句视为代码块，大小写敏感；
 4.\表转义，\转义符表示正常输出，r''表示内部字符串不转义；
-5.bool值FALSE和Ture，注意大小写；not表非；None表空；
+5.bool值False和Ture，注意大小写；not表非；None表空；
 6.%输出，例>>>'Hello, %s' % 'world'
-           'Hello, world
-7.数据类型list是一种有序的集合，可以随时添加和删除其中的元素，类似于动态数组；
+           Hello, world
+7.数据类型list是一种有序的集合[]，可以随时添加和删除其中的元素(多种数据类型)，类似于动态数组；
   例；直接获取倒数第一个元素；classmate[-1]
       插；classmates.insert(1, 'Jack')
 	  取；classmates.pop(i)
 	  长度；len(classmate)
 	  list元素也可以是另一个list；s = ['python', 'java', ['asp', 'php'], 'scheme']
-8.有序列表tuple叫元组,和list非常类似，但是tuple一旦初始化就不能修改，代码更安全；
+8.有序列表tuple叫元组,和list非常类似，创建tuple和创建list唯一不同之处是用( )替代了[ ]。
+  但是tuple一旦初始化就不能修改，代码更安全； t = (1,)
 例：一个“可变的”tuple：
 	>>> t = ('a', 'b', ['A', 'B'])
 	>>> t[2][0] = 'X'
@@ -27,13 +28,103 @@
 12.和list比较，dict有以下几个特点：
 		(1)查找和插入的速度极快，不会随着key的增加而变慢；
 		(2)需要占用大量的内存，内存浪费多。
+		(3)dict内部是无序的.
    而list相反：
 		(1)查找和插入的时间随着元素的增加而增加；
 		(2)占用空间小，浪费内存很少。
    所以，dict是用空间来换取时间的一种方法。
-13.set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
-	   操作； s.add(4)、s.remove(4)
-	           a = 'abc'
-			>>> b = a.replace('a', 'A')>>> b  'Abc'
-			>>> a   'abc'
-	   
+13.set和dict类似，也是一组key的集合，但不存储value,所以key不会重复。
+	   操作；s.add(4)、s.remove(4)
+	            a = 'abc'
+			>>> b = a.replace('a', 'A')
+			>>> b 输出 'Abc'
+			>>> a 输出 'abc'
+14.函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：def f(x)
+15.定义一个函数要使用def语句,例def f(x):,return None可以简写为return. 
+   如果想定义一个什么事也不做的空函数，可以用pass语句.
+16.静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，例： int a =23
+17.一个字节能表示的最大的整数就是255（二进制11111111=十进制255）,0 - 255被用来表示大小写英文字母、数字和一些符号，
+   这个编码表被称为ASCII编码，比如大写字母 A 的编码是65，小写字母 z 的编码是122。
+18.Python把0、空字符串''和None看成 False，其他数值和非空字符串都看成 True  
+19.d = {
+    'Adam': 95,
+    'Lisa': 85,
+    'Bart': 59
+}
+for x in d:
+    print x ,':',d[x]
+	print x+': '+str(d[x])
+20.创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素,
+   例：set(['A', 'C', 'B'])
+   s = set([('Adam', 95), ('Lisa', 85), ('Bart', 59)])
+21.cmp(a,b)、sum(list),len(list),math.cos,
+22.python的函数返回多值其实就是返回一个tuple,函数的默认参数的作用是简化调用,
+   Python解释器会把传入的一组参数组装成一个tuple传递给可变参数.
+23.L[0:45:5]表示，从索引0开始取，每隔5个位置取一个数，直到索引45为止.
+24. 1. 有序集合：list，tuple，str和unicode；
+	2. 无序集合：set
+	3. 无序集合并且具有 key-value 对：dict
+25.索引迭代也不是真的按索引访问，而是由 enumerate() 函数自动把每个元素变成 (index, element) 
+   这样的tuple，再迭代，就同时获得了索引和元素本身
+26.zip()函数可以把两个 list 变成一个 list：
+>>> zip([10, 20, 30], ['A', 'B', 'C'])
+   [(10, 'A'), (20, 'B'), (30, 'C')]
+27.values()和itervalues()的区别：
+   1. values() 方法实际上把一个 dict 转换成了包含 value 的list。
+   2. 但是 itervalues() 方法不会转换，它会在迭代过程中依次从 dict 中取出 value，
+      所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
+   3.和values()有一个()类似,items()也有一个对应的 iteritems()，
+	 iteritems() 不把dict转换成list,而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。
+28.def toUppers(L):
+    return [x.upper() for x in L if isinstance(x,str)]
+print toUppers(['Hello', 'world', 101])	
+	输出：['HELLO', 'WORLD']
+29. 1)capitalize() 首字母大写，其余全部小写 
+	2)upper() 全转换成大写
+	3)lower() 全转换成小写
+	4)title() 标题首字大写，如"i love python".title()  "I love python"
+	5)map(function,list)
+	6)reduce(f,list,initial)传入的函数 f 必须接收两个参数
+	7)filter(f,list)这个函数 f 的作用是对每个元素进行判断，返回 True或 False，
+	  filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
+	8) sorted(list，cmp)也是一个高阶函数，默认从小到大排，它可以接收一个比较函数来实现自定义排序
+	 例def reversed_cmp(x, y):
+	 		if x < y:
+				return 1
+			elif x > y:
+				return -1
+			return 0
+30.小数对1求余不为0
+31.闭包的特点是返回的函数还引用了外层函数的局部变量，
+   所以，要正确使用闭包，就要确保引用的局部变量在函数返回后不能变。
+   例：
+	def count():
+		fs = []
+		for i in range(1, 4):
+			def f(a=i)
+				return a*a
+			fs.append(f)
+		return fs
+		
+	f1, f2, f3 = count()
+	print f1(), f2(), f3()
+	方法：问题的产生是因为函数只在执行时才去获取外层参数i，若函数定义时可以获取到i，
+		  问题便可解决。而默认参数正好可以完成定义时获取i值且运行函数时无需参数输入的功能，
+		  所以在函数f()定义中改为f(m = i),函数f返回值改为m*m即可.
+32. lambda x: x * x ，关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数，只能有一个表达式
+    myabs = lambda x: -x if x < 0 else x
+33.装饰器：@new_fn					def f1(x)
+            def f1(x):					return x*2
+				return x*2			f1=new_fn(f1)
+34.使用 decorator 用Python提供的 @ 语法，这样可以避免手动编写 f = decorate(f) 这样的代码。
+定义decorator
+	def log(f):        #定义装饰器高阶函数，以要装饰的函数f作为参数
+		def fn(x):        #内部相当于重构要装饰的函数f，重命名为fn
+			print 'call ' + f.__name__ + '()...'        #加特技print
+			return f(x)        #为了不重写原来的函数f的代码，所以用return f(x)代替原来的代码。
+		return fn        将被装饰过的新的函数fn返回
+35.如果我们只希望导入用到的math模块的某几个函数,from math import pow, sin, log
+36.try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
