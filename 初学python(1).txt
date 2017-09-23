@@ -41,7 +41,7 @@
 			>>> a 输出 'abc'
 14.函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：def f(x)
 15.定义一个函数要使用def语句,例def f(x):,return None可以简写为return. 
-   如果想定义一个什么事也不做的空函数，可以用pass语句.
+   如果想定义一个什么事也不做的空函数或者空对象，可以用pass语句.
 16.静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，例： int a =23
 17.一个字节能表示的最大的整数就是255（二进制11111111=十进制255）,0 - 255被用来表示大小写英文字母、数字和一些符号，
    这个编码表被称为ASCII编码，比如大写字母 A 的编码是65，小写字母 z 的编码是122。
@@ -58,7 +58,7 @@ for x in d:
    例：set(['A', 'C', 'B'])
    s = set([('Adam', 95), ('Lisa', 85), ('Bart', 59)])
 21.cmp(a,b)、sum(list),len(list),math.cos,
-22.python的函数返回多值其实就是返回一个tuple,函数的默认参数的作用是简化调用,
+22.python的函数返回多值其实就是返回一个tuple(a,b,c,....),函数的默认参数的作用是简化调用,
    Python解释器会把传入的一组参数组装成一个tuple传递给可变参数.
 23.L[0:45:5]表示，从索引0开始取，每隔5个位置取一个数，直到索引45为止.
 24. 1. 有序集合：list，tuple，str和unicode；
@@ -83,20 +83,22 @@ print toUppers(['Hello', 'world', 101])
 	2)upper() 全转换成大写
 	3)lower() 全转换成小写
 	4)title() 标题首字大写，如"i love python".title()  "I love python"
-	5)map(function,list)
-	6)reduce(f,list,initial)传入的函数 f 必须接收两个参数
+	5)map(f,list)通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。
+	6)reduce(f,list,initial)传入的函数 f 必须接收两个参数,取元素都做f函数的操作，累加、累积或其他
 	7)filter(f,list)这个函数 f 的作用是对每个元素进行判断，返回 True或 False，
 	  filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
 	8) sorted(list，cmp)也是一个高阶函数，默认从小到大排，它可以接收一个比较函数来实现自定义排序
-	 例def reversed_cmp(x, y):
+	 比较函数的定义：返回1，-1或0
+	 def reversed_cmp(x, y):
 	 		if x < y:
 				return 1
 			elif x > y:
 				return -1
 			return 0
-30.小数对1求余不为0
-31.闭包的特点是返回的函数还引用了外层函数的局部变量，
-   所以，要正确使用闭包，就要确保引用的局部变量在函数返回后不能变。
+30.小数对1求余不为0.
+   函数g也是一个对象，函数名g就是指向函数g的变量，所以，最外层函数f可以返回变量g，也就是函数g本身。
+31.闭包的特点是返回的函数还引用了外层函数的局部变量，所以，要正确使用闭包，
+   就要确保引用的局部变量在函数返回后不能变。可以在参数里设置初始值。
    例：
 	def count():
 		fs = []
@@ -128,3 +130,61 @@ print toUppers(['Hello', 'world', 101])
     from cStringIO import StringIO
 except ImportError:
     from StringIO import StringIO
+37.装饰器的理解：1）高阶函数：名字表示装饰的意思，传入一个原始函数f，返回的是装饰后的后装饰函数fn。
+				 2）原始函数：在装饰器中并不改变其代码，而是最后加上了装饰代码变成装饰函数。
+				 3）装饰函数组成：（1）装饰的代码
+								  （2）返回值是原始函数的执行结果，高阶函数返回的是装饰函数，相当于（1）和（2）相加，
+								   所以能起到装饰的效果。
+								  （3）参数为原始函数的参数，因为它要返回原始函数的执行结果，且最后原始函数也变成了装饰函数。
+				 例：一个log的代码
+						def log(f):
+							def fn(x):
+								print 'call ' + f.__name__ + '()...'
+								return f(x)
+							return fn
+				    调用时写
+						@log
+						def factorial(n):
+							return reduce(lambda x,y: x*y, range(1, n+1))
+						print factorial(10)
+					输出结果：
+							  call factorial()...
+                              3628800
+38.functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2：
+	>>> import functools
+	>>> int2 = functools.partial(int, base=2)
+	>>> int2('1000000')
+	64
+	>>> int2('1010101')
+	85
+39.在定义 Person 类时，可以为Person类添加一个特殊的__init__()方法，当创建实例时，__init__()方法被自动调用，我们就能在此为每个实例都统一加上以下属性：
+	class Person(object):
+		def __init__(self, name, gender, birth):
+			self.name = name
+			self.gender = gender
+			self.birth = birth
+	__init__() 方法的第一个参数必须是 self
+40.Python对属性权限的控制是通过属性名来实现的，如果一个属性由双下划线开头(__)，该属性就无法被外部访问。__init_
+   如果一个属性以"__xxx__"的形式定义，那它又可以被外部访问了，以"__xxx__".
+   _xxx 可以在子类中使用.__xxx 不可以在子类中使用。
+41.实例属性每个实例各自拥有，互相独立，而类属性有且只有一份。由于Python是动态语言，类属性也是可以动态添加和修改的.
+   __int__（self，） 初始化实例的属性，同时也具备普通函数的功能，每执行一次就计算函数内容的运算，函数里面引用类的属性需要带上类名。
+   当实例属性和类属性重名时，实例属性优先级高，它将屏蔽掉对类属性的访问。
+42.我们在 class 中定义的实例方法其实也是属性，它实际上是一个函数对象:p1.get_grade 返回的是一个函数对象，但这个函数是一个绑定到实例的函数，p1.get_grade()才是方法调用。
+   因为方法也是一个属性，所以，它也可以动态地添加到实例上，只是需要用 types.MethodType() 把一个函数变为一个方法：  
+	例：import types 
+		def fn_get_grade(self):
+			if self.score >= 80:
+				return 'A'
+			if self.score >= 60:
+				return 'B'
+			return 'C'
+
+		class Person(object):
+			def __init__(self, name, score):
+				self.name = name
+				self.score = score
+
+		p1 = Person('Bob', 90)
+		p1.get_grade = 
+		   p1.get_grade = types.MethodType(fn_get_grade, p1, Person)
