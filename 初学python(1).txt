@@ -1,5 +1,5 @@
 1.字符串用“或‘都可以，打印，会变空格；
-2.输出用print(),变量不用引号，输入用input(显示内容)，返回值是str类型；
+2.输出用print(),字符串用引号，输入用input(显示内容)，返回值是str类型；
 3.#开头是注释，以冒号:结尾时，缩进的语句视为代码块，大小写敏感；
 4.\表转义，\转义符表示正常输出，r''表示内部字符串不转义；
 5.bool值False和Ture，注意大小写；not表非；None表空；
@@ -39,10 +39,10 @@
 			>>> b = a.replace('a', 'A')
 			>>> b 输出 'Abc'
 			>>> a 输出 'abc'
-14.函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：def f(x)
+14.函数名是指向一个函数的变量，所以这个变量可以随意指向其他函数。
 15.定义一个函数要使用def语句,例def f(x):,return None可以简写为return. 
    如果想定义一个什么事也不做的空函数或者空对象，可以用pass语句.
-16.静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，例： int a =23
+16.静态语言在定义变量时必须指定变量类型，例：int a =23
 17.一个字节能表示的最大的整数就是255（二进制11111111=十进制255）,0 - 255被用来表示大小写英文字母、数字和一些符号，
    这个编码表被称为ASCII编码，比如大写字母 A 的编码是65，小写字母 z 的编码是122。
 18.Python把0、空字符串''和None看成 False，其他数值和非空字符串都看成 True  
@@ -52,25 +52,25 @@
     'Bart': 59
 }
 for x in d:
-    print x ,':',d[x]
+    print x ,':',d[x]	//逗号的意思是分别打印
 	print x+': '+str(d[x])
-20.创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素,
+20.创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素,即去掉了list里的重复元素。
    例：set(['A', 'C', 'B'])
    s = set([('Adam', 95), ('Lisa', 85), ('Bart', 59)])
 21.cmp(a,b)、sum(list),len(list),math.cos,
 22.python的函数返回多值其实就是返回一个tuple(a,b,c,....),函数的默认参数的作用是简化调用,
-   Python解释器会把传入的一组参数组装成一个tuple传递给可变参数.
+   Python解释器会把传入的一组参数组装成一个tuple传递给可变参数.传入传出都是tuple。
 23.L[0:45:5]表示，从索引0开始取，每隔5个位置取一个数，直到索引45为止.
 24. 1. 有序集合：list，tuple，str和unicode；
 	2. 无序集合：set
 	3. 无序集合并且具有 key-value 对：dict
 25.索引迭代也不是真的按索引访问，而是由 enumerate() 函数自动把每个元素变成 (index, element) 
    这样的tuple，再迭代，就同时获得了索引和元素本身
-26.zip()函数可以把两个 list 变成一个 list：
+26.zip()函数可以把两个 list 变成一个 list：？？
 >>> zip([10, 20, 30], ['A', 'B', 'C'])
    [(10, 'A'), (20, 'B'), (30, 'C')]
 27.values()和itervalues()的区别：
-   1. values() 方法实际上把一个 dict 转换成了包含 value 的list。
+   1. values() 方法实际上把一个 dict 转换成了只包含 value 的list。
    2. 但是 itervalues() 方法不会转换，它会在迭代过程中依次从 dict 中取出 value，
       所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
    3.和values()有一个()类似,items()也有一个对应的 iteritems()，
@@ -84,21 +84,21 @@ print toUppers(['Hello', 'world', 101])
 	3)lower() 全转换成小写
 	4)title() 标题首字大写，如"i love python".title()  "I love python"
 	5)map(f,list)通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。
-	6)reduce(f,list,initial)传入的函数 f 必须接收两个参数,取元素都做f函数的操作，累加、累积或其他
+	6)reduce(f,list,initial)传入的函数 f 必须接收两个参数,取出元素都做f函数的操作，累加、累积或其他
 	7)filter(f,list)这个函数 f 的作用是对每个元素进行判断，返回 True或 False，
 	  filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
 	8) sorted(list，cmp)也是一个高阶函数，默认从小到大排，它可以接收一个比较函数来实现自定义排序
 	 比较函数的定义：返回1，-1或0
 	 def reversed_cmp(x, y):
 	 		if x < y:
-				return 1
+				return 1           //返回1的排序
 			elif x > y:
 				return -1
 			return 0
 30.小数对1求余不为0.
-   函数g也是一个对象，函数名g就是指向函数g的变量，所以，最外层函数f可以返回变量g，也就是函数g本身。
-31.闭包的特点是返回的函数还引用了外层函数的局部变量，所以，要正确使用闭包，
-   就要确保引用的局部变量在函数返回后不能变。可以在参数里设置初始值。
+   函数g也是一个对象，函数名g就是指向函数g的变量，所以，最外层函数f可以返回变量g，进而可调用g()。
+31.闭包的特点是返回的函数引用了外层函数的局部变量，所以，要正确使用闭包，
+   就要确保引用的局部变量在函数返回后不能变。可以在参数里设置初始值=外部函数的变量。
    例：
 	def count():
 		fs = []
@@ -113,8 +113,8 @@ print toUppers(['Hello', 'world', 101])
 	方法：问题的产生是因为函数只在执行时才去获取外层参数i，若函数定义时可以获取到i，
 		  问题便可解决。而默认参数正好可以完成定义时获取i值且运行函数时无需参数输入的功能，
 		  所以在函数f()定义中改为f(m = i),函数f返回值改为m*m即可.
-32. lambda x: x * x ，关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数，只能有一个表达式
-    myabs = lambda x: -x if x < 0 else x
+32. lambda x: x * x ，关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数，后面为操作，只能有一个表达式
+    myabs = lambda x: -x if x < 0 else x	//三元操作符为一个表达式
 33.装饰器：@new_fn					def f1(x)
             def f1(x):					return x*2
 				return x*2			f1=new_fn(f1)
@@ -130,11 +130,11 @@ print toUppers(['Hello', 'world', 101])
     from cStringIO import StringIO
 except ImportError:
     from StringIO import StringIO
-37.装饰器的理解：1）高阶函数：名字表示装饰的意思，传入一个原始函数f，返回的是装饰后的后装饰函数fn。
-				 2）原始函数：在装饰器中并不改变其代码，而是最后加上了装饰代码变成装饰函数。
+37.装饰器的理解：1）高阶函数：名字表示装饰的意思，传入一个原始函数f，返回的是装饰后的装饰函数fn。
+				 2）原始函数：在装饰器中并不改变其代码，而是装饰函数加上了装饰代码，高阶函数赋值给它变成装饰函数。
 				 3）装饰函数组成：（1）装饰的代码
-								  （2）返回值是原始函数的执行结果，高阶函数返回的是装饰函数，相当于（1）和（2）相加，
-								   所以能起到装饰的效果。
+								  （2）返回值是返回原始函数的执行结果，不改变原始结果，只添加装饰，
+								   高阶函数返回的是装饰函数，相当于（1）和（2）相加，所以能起到装饰的效果。
 								  （3）参数为原始函数的参数，因为它要返回原始函数的执行结果，且最后原始函数也变成了装饰函数。
 				 例：一个log的代码
 						def log(f):
@@ -186,5 +186,4 @@ except ImportError:
 				self.score = score
 
 		p1 = Person('Bob', 90)
-		p1.get_grade = 
-		   p1.get_grade = types.MethodType(fn_get_grade, p1, Person)
+		p1.get_grade = types.MethodType(fn_get_grade, p1, Person)
